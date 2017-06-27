@@ -1,0 +1,1 @@
+babel --plugins transform-react-jsx . -d ..web\js\

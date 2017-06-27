@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/web/WEB-INF/views/error.jsp" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/web/WEB-INF/views/hibernate001.jsp" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/web/WEB-INF/views/includes/page_header.jsp" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/web/WEB-INF/views/index2.jsp" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/web/WEB-INF/views/jsplearn_login.jsp" charset="UTF-16" />
+    <file url="file://$PROJECT_DIR$/web/index.jsp" charset="UTF-16" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

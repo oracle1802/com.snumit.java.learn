@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <mvc:resources mapping="/img/**" location="/WEB-INF/resources/img/" cache-period="1024"/>
+    <mvc:resources mapping="/html/**" location="/WEB-INF/resources/html/" cache-period="1024"/>
+    <mvc:resources mapping="/css/**" location="/WEB-INF/resources/css/" cache-period="1024"/>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/resources/js/" cache-period="1024"/>
+    <mvc:resources mapping="/fonts/**" location="/WEB-INF/resources/fonts/" cache-period="1024"/>
+    <mvc:resources mapping="/framework/**" location="/WEB-INF/resources/framework/" cache-period="1024"/>
+
+    <mvc:annotation-driven/>
+
+    <context:component-scan base-package="com.snumit.java.learn.spring001.mvc.controller"/>
+
+    <!--Apache Tiles - обслуживание шаблонов для составления страниц из фрагментов-->
+    <bean class="org.springframework.web.servlet.view.tiles3.TilesViewResolver">
+        <property name="order" value="0"/>
+    </bean>
+    <bean class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+        <property name="definitions">
+            <list>
+                <value>/WEB-INF/tiles/general.xml</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
+        <property name="suffix" value=".jsp"/>
+        <property name="order" value="1"/>
+    </bean>
+
+    <!-- REST -->
+    <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+        <property name="order" value="2" />
+        <property name="contentNegotiationManager">
+            <bean class="org.springframework.web.accept.ContentNegotiationManager">
+                <constructor-arg>
+                    <bean class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
+                        <constructor-arg>
+                            <map>
+                                <entry key="json" value="application/json"/>
+                                <entry key="xml" value="application/xml"/>
+                            </map>
+                        </constructor-arg>
+                    </bean>
+                </constructor-arg>
+            </bean>
+        </property>
+
+        <property name="defaultViews">
+            <list>
+                <!-- JSON View -->
+                <bean class="org.springframework.web.servlet.view.json.MappingJackson2JsonView" />
+
+                <!--&lt;!&ndash; XML View &ndash;&gt;-->
+                <!--<bean class="org.springframework.web.servlet.view.xml.MarshallingView">-->
+                    <!--<constructor-arg>-->
+                        <!--<bean class="org.springframework.oxm.jaxb.Jaxb2Marshaller">-->
+                            <!--<property name="contextPaths">-->
+                                <!--<list>-->
+                                    <!--<value>com.snumit.java.learn.spring001.persistence.entity</value>-->
+                                <!--</list>-->
+                            <!--</property>-->
+                        <!--</bean>-->
+                    <!--</constructor-arg>-->
+                <!--</bean>-->
+            </list>
+        </property>
+    </bean>
+</beans>

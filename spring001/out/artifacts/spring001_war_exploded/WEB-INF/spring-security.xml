@@ -1,0 +1,42 @@
+<beans:beans
+        xmlns:beans="http://www.springframework.org/schema/beans"
+        xmlns="http://www.springframework.org/schema/security"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+            http://www.springframework.org/schema/beans
+            http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+            http://www.springframework.org/schema/security
+            http://www.springframework.org/schema/security/spring-security-4.2.xsd">
+
+    <beans:bean id="springSecurityFilterChain" class="org.springframework.web.filter.DelegatingFilterProxy"/>
+
+    <beans:bean id="myProvider"
+                class="com.snumit.java.learn.spring001.sequrity.CustomAuthenticationProvider"/>
+
+    <http auto-config='true' use-expressions="true">
+        <!--Static resources-->
+        <intercept-url pattern="/*, /img/**, /html/**, /js/**, /css/**, /fonts/**, /framework/**" access="permitAll"/>
+        <intercept-url pattern="/login" access="permitAll"/>
+
+        <intercept-url pattern="/rmobserver/**" access="permitAll"/>
+
+        <intercept-url pattern="/info/**" access="hasRole('ROLE_USER')"/>
+        <!--доступ к разрабатываемым проектам-->
+        <intercept-url pattern="/insideprojects/**" access="hasRole('ROLE_INSIDEPROJECTS')"/>
+
+        <!--Доступ к приложению-->
+        <!--<intercept-url pattern="/*" access="hasRole('ROLE_USER')"/>-->
+
+        <form-login login-page='/login' default-target-url="/home"/>
+        <!--<logout logout-url="/logout" logout-success-url="/home"/>-->
+        <!--<csrf disabled="true"/>-->
+    </http>
+
+    <authentication-manager>
+        <authentication-provider user-service-ref='myProvider'>
+            <password-encoder hash="plaintext"/>
+        </authentication-provider>
+    </authentication-manager>
+
+
+</beans:beans>

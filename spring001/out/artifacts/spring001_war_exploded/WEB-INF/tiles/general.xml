@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<!DOCTYPE tiles-definitions PUBLIC
+        "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+        "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+    <!--базовый шаблон-->
+    <definition name="common" template="/WEB-INF/tiles/layouts/basic.jsp">
+        <put-attribute name="title" value="snumit.com" />
+    </definition>
+
+    <!--home-->
+    <definition name="home" extends="common">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="body" value="/WEB-INF/jsp/phome.jsp" />
+    </definition>
+
+    <!--логин-->
+    <definition name="login" extends="common">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="body" value="/WEB-INF/jsp/plogin.jsp" />
+    </definition>
+
+    <!--admin-->
+    <definition name="admin" extends="common">
+        <put-attribute name="title" value="Login" />
+        <put-attribute name="body" value="/WEB-INF/jsp/padmin.jsp" />
+    </definition>
+
+    <!--tree structure-->
+    <definition name="info/tree" extends="common">
+        <put-attribute name="title" value="Structure" />
+        <put-attribute name="body" value="/WEB-INF/jsp/info/ptree.jsp" />
+    </definition>
+
+    <!--список пользователей-->
+    <definition name="userslist" extends="common">
+        <put-attribute name="title" value="Users List" />
+        <put-attribute name="body" value="/WEB-INF/jsp/puserslist.jsp" />
+    </definition>
+
+    <!--пользователь добавление/редактирование-->
+    <definition name="useraddedit" extends="common">
+        <put-attribute name="title" value="User details" />
+        <put-attribute name="body" value="/WEB-INF/jsp/puseraddedit.jsp" />
+    </definition>
+
+    <!--пользователь добавление-->
+    <definition name="useradd" extends="common">
+        <put-attribute name="title" value="User details" />
+        <put-attribute name="body" value="/WEB-INF/jsp/puseradd.jsp" />
+    </definition>
+    <!--#################################################################################-->
+    <!--RMObserver-->
+    <!--index page-->
+    <definition name="rmobserver/index" extends="common">
+        <put-attribute name="title" value="Redmine Observer" />
+        <put-attribute name="body" value="/WEB-INF/jsp/rmobserver/index.jsp" />
+    </definition>
+
+    <!--#################################################################################-->
+    <!--HTTPErrors-->
+    <definition name="err" extends="common">
+        <put-attribute name="title" value="Error" />
+        <put-attribute name="body" value="/WEB-INF/jsp/httperr.jsp" />
+    </definition>
+
+
+    <!--опробовать ajax-->
+    <definition name="testajax" extends="common">
+        <put-attribute name="title" value="User details" />
+        <put-attribute name="body" value="/WEB-INF/jsp/ptestajax.jsp" />
+    </definition>
+</tiles-definitions>
